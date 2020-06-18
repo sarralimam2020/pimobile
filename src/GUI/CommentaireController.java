@@ -83,9 +83,11 @@ public void initialize(Blog ev) {
         sss.setUIID("ss");
         f.add(ca1).add(ss);
         CommentaireService com = new CommentaireService();
-
-        ArrayList<Commontaire> lis = com.tt(ev);
-        System.out.println(lis);
+        System.out.println("==============================");
+        System.out.println("==============================");
+        System.out.println("==============================");
+        System.out.println(ev.getId());
+        ArrayList<Commontaire> lis = com.tt(ev.getId().toString());
         for (Commontaire r : lis) {
             Container commentaires1=new Container(new BorderLayout());
             commentaires1.add(BorderLayout.CENTER,new SpanLabel("                                                                           "));

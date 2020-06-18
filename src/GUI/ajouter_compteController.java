@@ -33,8 +33,8 @@ public class ajouter_compteController extends Controller {
     
     public void add_user(String username , String password , String nom, String email , String prenom ,String phonenumber , String imgPath ) {
       
-String hashed = BCrypt.hashpw(password, BCrypt.gensalt(13));
-        System.err.println(hashed);
+    String hashed = BCrypt.hashpw(password, BCrypt.gensalt(13));
+            System.err.println(hashed);
         
         ConnectionRequest con=new ConnectionRequest();
   

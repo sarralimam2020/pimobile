@@ -64,17 +64,18 @@ public class BlogDetailController extends Controller {
  
         public void initialize(Blog e) throws IOException {
         try {
-            f = new Form();
+            f = new Form(new BoxLayout(BoxLayout.Y_AXIS));
             f.getToolbar().setHidden(true);
             theme = UIManager.initFirstTheme("/theme");           
             titre = new Label();     
-            
+                            
+
             enc = EncodedImage.create("/giphy.gif");
             BlogService serviceTask=new BlogService();
             List<Blog> lis = serviceTask.getList2(e.getId());
             SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
             for(Blog ev : lis){                
-                cc = new Container();
+                cc = new Container(new BoxLayout(BoxLayout.Y_AXIS));
                 ca = new Container(new BoxLayout(BoxLayout.Y_AXIS));
                 cd = new Container(new BoxLayout(BoxLayout.Y_AXIS));
                 cx = new Container(new BoxLayout(BoxLayout.Y_AXIS));
@@ -85,18 +86,17 @@ public class BlogDetailController extends Controller {
                 titre.setText("Titre :");
                 titre.getAllStyles().setUnderline(true);
                 Label tt = new Label(e.getTitle());
-                Container xx = new Container(new BoxLayout(BoxLayout.X_AXIS));
+                Container xx = new Container(new BoxLayout(BoxLayout.Y_AXIS));
                 xx.add(titre).add(tt);               
                 Image image = URLImage.createToStorage(enc,e.getImage(),Controller.ip+"/Pidev-dev/web/uploads/"+ev.getImage());                               
                 image=image.scaled(200, 200);
                 description.setText("Description : "+ev.getContent());
                 titreCordination.setText("Place&Date : "+ev.getTitle());                
                 nbplaces.setText(String.valueOf("LikesNumber : "+ev.getLikesnumber()));
-                   commantaire=new Button("Read More");
+                commantaire=new Button("Commantaires");
                 commantaire.addActionListener((evt) -> {
-                    System.out.println(ev);
                CommentaireController CommentaireController = new CommentaireController();
-               //CommentaireController.initialize(ev.getId().toString());
+               CommentaireController.initialize(ev);
                 this.rootContainer.removeAll();
                 this.rootContainer.add(BorderLayout.CENTER,CommentaireController.getView());
                 this.rootContainer.revalidate();

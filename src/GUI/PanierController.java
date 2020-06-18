@@ -7,8 +7,11 @@ package GUI;
 
 import Entity.Panier;
 import com.codename1.components.SpanLabel;
+import com.codename1.io.ConnectionRequest;
+import com.codename1.io.NetworkManager;
 import com.codename1.main.Controller;
 import com.codename1.main.MainView;
+import com.codename1.main.Session;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.EncodedImage;
@@ -83,7 +86,7 @@ public class PanierController extends Controller {
                 titre.setText("Produict :");
                 
            
-                titre.getAllStyles().setUnderline(true);
+                titre.getAllStyles().setUnderline(true); 
                 Container xx = new Container(new BoxLayout(BoxLayout.X_AXIS));
                 xx.add(titre);
                 cc.add(xx);
@@ -92,6 +95,17 @@ public class PanierController extends Controller {
                 parentContainer.add(cc);                                                              
             }      
             cx.add(Valider);
+            Valider.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    
+                    ConnectionRequest con = new ConnectionRequest();
+                 con.setUrl("http://localhost/Pidev-web/web/app_dev.php/api/mobile/order?userId="+Session.ConnectedUser.getId());
+                 NetworkManager.getInstance().addToQueueAndWait(con);
+                    
+                }
+            });
+            
                 cx.add(deleteall);
            parentContainer.add(cx);
         this.rootContainer.add(BorderLayout.CENTER,parentContainer);   

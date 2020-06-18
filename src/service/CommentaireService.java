@@ -29,7 +29,7 @@ public class CommentaireService {
         public ArrayList<Commontaire> tt(String id) {
          ArrayList<Commontaire> listTasks = new ArrayList<>();
             ConnectionRequest con = new ConnectionRequest();
-        con.setUrl(Controller.ip+"/piIntegration/web/app_dev.php/api/mobile/showcom/");
+        con.setUrl(Controller.ip+"/Pidev-web/web/app_dev.php/api/mobile/showcom/");
         con.addArgument("Blogid",id);
         System.out.println(con.getUrl());
         con.addResponseListener(new ActionListener<NetworkEvent>() {

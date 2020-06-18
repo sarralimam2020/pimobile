@@ -63,7 +63,7 @@ public class ShopDetailController extends Controller {
         try {
             Panier panier = new Panier();
             User u = Session.ConnectedUser;
-            f = new Form();
+            f = new Form(new BoxLayout(BoxLayout.Y_AXIS));
             f.getToolbar().setHidden(true);
             theme = UIManager.initFirstTheme("/theme");           
             titre = new Label();     
@@ -73,17 +73,15 @@ public class ShopDetailController extends Controller {
             List<Produict> lis = serviceTask.getList2(e.getId());
             SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
             for(Produict ev : lis){                
-                cc = new Container();
+                cc = new Container(new BoxLayout(BoxLayout.Y_AXIS));
                 //cd = new Container();
                 titre= new Label();
                 description = new SpanLabel();
                 titreCordination = new Label();
                 nbplaces = new Label();
-                qantity = new TextField("","Qantity");
+                qantity = new TextField("","Qantity Disponbile");
                
                 
-                mail = new SpanLabel();
-                mail.setText("Donner votre avis par mail à l'admin :");
                 send=new Button("Add To Panier");
                 send.addActionListener(s->{   
                 System.out.println("=======================================================");
@@ -92,24 +90,26 @@ public class ShopDetailController extends Controller {
                 System.out.println("=======================================================");
                 System.out.println("=======================================================");
                 System.out.println("=======================================================");
+                // new instance of  service project 
                 ShopService ShopService = new ShopService();
                 
                 String prixx;
-                
+                String idpro;
+                // jibdna valeur   prix wlil id produit 
                 prixx = Integer.toString(ev.getPrix());
-                String idpro = "1";
+                idpro = Integer.toString(ev.getId());
                 
                 
                 
-
+                // 
                 ShopService.addtopanier(u.getId(),idpro,qantity.getText(),prixx);
-                    System.out.println(u.getId() +"   "+idpro+"      "+qantity.getText()+"      "+prixx);
+                System.out.println(u.getId() +"   "+idpro+"      "+qantity.getText()+"      "+prixx);
                // System.out.println( Name : "+ev.getNom()+ " Qantity : "+qantity.getText()+  "   Prix : " + ev.getPrix() + "Description   " + ev.getDescription() + " last : " + ev.getQuantity());
                 });
                 titre.setText("Titre :");
                 titre.getAllStyles().setUnderline(true);
                 Label tt = new Label(e.getNom());
-                Container xx = new Container(new BoxLayout(BoxLayout.X_AXIS));
+                Container xx = new Container(new BoxLayout(BoxLayout.Y_AXIS));
                 xx.add(titre).add(tt);               
                 Image image = URLImage.createToStorage(enc,e.getImageId(),Controller.ip+"/Pidev-web/web/uploads/"+ev.getImageId());                               
                 image=image.scaled(200, 200);
@@ -124,7 +124,6 @@ public class ShopDetailController extends Controller {
                 cc.add(qantity);
                 cc.addAll(new Label(format.format(ev.getDate())),nbplaces);
                 
-                cc.add(mail);
                 cc.add(send);
                 f.add(cc);               
                 }       

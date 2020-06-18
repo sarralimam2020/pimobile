@@ -59,18 +59,6 @@ public class BlogController extends Controller {
             Container parentContainer = new Container(BoxLayout.y());
             parentContainer.setScrollableY(true);
             enc = EncodedImage.create("/giphy.gif");            
-            decouvrir = new SpanLabel();
-            decouvrir.setText("Découvrir les évenements qui ont plus des participants :");
-            Stat = new Button("Découvrir");
-            Stat.addActionListener((s) -> {
-            this.rootContainer.removeAll();
-            StatEvController st = new StatEvController();
-            st.initialize();
-            this.rootContainer.add(BorderLayout.CENTER,st.getView());
-            this.rootContainer.revalidate();            
-            });
-            parentContainer.add(decouvrir);
-            parentContainer.add(Stat);           
             for (Blog e : lis)
             {                
                 cc = new Container();

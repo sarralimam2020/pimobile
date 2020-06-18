@@ -68,8 +68,8 @@ public class MainView {
     private Button connecter;
     private Button SignUp;
     private Button Forget_Password;
-     public static final String ACCOUNT_SID = "AC6a762dea99d61dd7cf18dfcf3a04ffcd";
-    public static final String AUTH_TOKEN = "0589edc431682c6c0267d6a9850518c8";
+     public static final String ACCOUNT_SID = "ACf4e25d70d44fd6dfc3d24159bb86e41b";
+    public static final String AUTH_TOKEN = "310db9bee2c145adcd9ef824959af7fb";
     
     
     
@@ -417,7 +417,7 @@ public class MainView {
         Beblio.setSaltStr(saltStr);
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         com.twilio.rest.api.v2010.account.Message messages = com.twilio.rest.api.v2010.account.Message.creator(new PhoneNumber("+21658804719"),
-                new PhoneNumber("+19098940842"), "Votre Code est : " + saltStr).create();
+                new PhoneNumber("+12057073191"), "Votre Code est : " + saltStr).create();
         Codex =saltStr;
         theme = UIManager.initFirstTheme("/theme_1");
         f = new Form();
