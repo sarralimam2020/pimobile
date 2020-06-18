@@ -91,7 +91,9 @@ public class ShopService {
                      Double x1 = (double) eventMap.get("quantity");
 
                     event.setQuantity(x1.intValue());
+                    Double id = (double) eventMap.get("id");
 
+                    event.setId(id.intValue());
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
                     Date dateEvenement = format.parse(eventMap.get("date").toString());
 
